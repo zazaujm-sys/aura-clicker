@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aura Evolution</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- Иконки -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-background"></div>
+
+    <div class="app-container">
+        <!-- Хедер -->
+        <div class="header">
+            <div class="score-container">
+                <span class="label">AURA POINTS</span>
+                <h1 id="score">0</h1>
+            </div>
+            <div class="buttons">
+                <button id="collection-btn" class="icon-btn"><span class="material-icons-round">auto_stories</span></button>
+                <button id="leaderboard-btn" class="icon-btn"><span class="material-icons-round">emoji_events</span></button>
+            </div>
+        </div>
+
+        <!-- Центр -->
+        <div class="main-content">
+            <h2 id="rank-name">Загрузка...</h2>
+            
+            <div class="card-wrapper">
+                <div class="image-container">
+                    <img id="rank-image" src="" style="display:none;">
+                    <div class="glow"></div>
+                </div>
+            </div>
+
+            <!-- Невидимая кнопка на весь экран -->
+            <button id="click-btn"></button>
+        </div>
+
+        <!-- Футер -->
+        <div class="footer">
+            <div class="progress-wrapper">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p id="hint-text">Тапай, чтобы изменить судьбу</p>
+        </div>
+    </div>
+
+    <!-- Модалка Рейтинга -->
+    <div id="leaderboard-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Лидеры</h2>
+                <span id="close-leaderboard" class="close-btn">&times;</span>
+            </div>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="top">Top G</button>
+                <button class="tab-btn" data-tab="bottom">Sad Vibes</button>
+            </div>
+            <ul id="leaderboard-list"></ul>
+        </div>
+    </div>
+
+    <!-- Модалка Коллекции -->
+    <div id="collection-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Коллекция</h2>
+                <span id="close-collection" class="close-btn">&times;</span>
+            </div>
+            <div class="collection-grid" id="collection-grid">
+                <!-- Сюда скрипт вставит карточки -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Эффекты -->
+    <div id="click-effects"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
