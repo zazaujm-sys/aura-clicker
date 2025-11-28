@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aura Clicker</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем Telegram WebApp -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <!-- Подключаем Supabase -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Верхняя панель -->
+        <div class="header">
+            <div class="score-box">
+                <span class="score-label">Твоя Аура:</span>
+                <h1 id="score">0</h1>
+            </div>
+            <button id="leaderboard-btn" class="icon-btn">🏆</button>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="main-content">
+            <h2 id="rank-name">Загрузка...</h2>
+            <div class="image-container">
+                <!-- Заглушка, пока не загрузится ранг -->
+                <img id="rank-image" src="" alt="Rank" style="display:none;"> 
+            </div>
+            
+            <!-- Кнопка клика (невидимая поверх всего) -->
+            <button id="click-btn">TAP</button>
+        </div>
+
+        <!-- Прогресс бар -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        
+        <p class="next-rank-hint" id="status-msg">Жми, чтобы изменить судьбу</p>
+    </div>
+
+    <!-- Модальное окно Рейтинга -->
+    <div id="leaderboard-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>Рейтинг Ауры</h2>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="top">🏆 Гигачады</button>
+                <button class="tab-btn" data-tab="bottom">💩 Анти-Герои</button>
+            </div>
+            <ul id="leaderboard-list">
+                <li>Загрузка...</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Эффекты (всплывающие цифры) -->
+    <div id="click-effects"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

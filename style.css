@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+:root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent-gold: #ffd700;
+    --accent-red: #ff3333;
+    --glass: rgba(255, 255, 255, 0.15);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none; /* Чтобы айфон не выделял текст */
+    touch-action: manipulation;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 20;
+}
+
+.score-box h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.icon-btn {
+    background: var(--glass);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    font-size: 1.8rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-content {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#rank-name {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-gold);
+    min-height: 2rem;
+}
+
+.image-container {
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    border: 2px solid var(--glass);
+    position: relative;
+    background: #222; /* Заглушка пока грузится фото */
+}
+
+#rank-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Кнопка на весь экран для удобства */
+#click-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 10;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Анимация клика */
+.clicked-anim {
+    transform: scale(0.97);
+    transition: transform 0.05s;
+}
+
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: #333;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(90deg, #ff3333, #ffd700);
+    transition: width 0.3s ease;
+}
+
+.next-rank-hint {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+/* Модальное окно */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.hidden { display: none; }
+
+.modal-content {
+    background: #151515;
+    padding: 20px;
+    border-radius: 20px;
+    width: 90%;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #333;
+}
+
+.close {
+    align-self: flex-end;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.tab-btn {
+    background: #333;
+    border: none;
+    color: #aaa;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tab-btn.active {
+    background: var(--accent-gold);
+    color: black;
+}
+
+#leaderboard-list {
+    list-style: none;
+    padding: 0;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+#leaderboard-list li {
+    background: #222;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+/* Всплывающий текст */
+.floating-text {
+    position: absolute;
+    font-weight: 900;
+    font-size: 2rem;
+    pointer-events: none;
+    animation: floatUp 0.8s ease-out forwards;
+    z-index: 50;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-80px) scale(1.5); }
+}
